@@ -1,11 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import MovieList from './component/HomePageList';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import MovieDetails from './components/MovieDetails';
 
-function App() {
+const App = () => {
   return (
-    <MovieList />
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
