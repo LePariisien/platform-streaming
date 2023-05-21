@@ -10,9 +10,10 @@ const MovieDetails = () => {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=22ac58ffbc1eadc600f5e2024e583e3f`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
         );
         setMovie(response.data);
+        console.log(movie.production_companies["0"].name)
       } catch (error) {
         console.log(error);
       }
@@ -27,8 +28,17 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <h1>{movie.title}</h1>
-      <p>{movie.overview}</p>
+      <h1 style={{textAlign: 'center'}}>{movie.title}</h1>
+      <p style={{marginTop: '10px'}}>Description du film : <br />{movie.overview}</p>
+      <p>Date de sortie : {movie.release_date}</p>
+      <p>Note du public : {movie.vote_average}</p>
+      <p>Durée : {movie.runtime} min</p>
+      <p>Langue d'origine : {movie.original_language}</p>
+      <p>Les compagnies qui ont aidé à la production : <ul>
+        {movie.production_companies.map(company => (
+          <li key={company.id}>{company.name}</li>
+        ))}
+      </ul></p>
     </div>
   );
 };

@@ -107,7 +107,7 @@ const MovieList = () => {
       ) : (
         categories.map((category) => (
           <div key={category}>
-            <h2>{genreMap[category]}</h2>
+            <h2 style={{textAlign: 'left'}}>{genreMap[category]}</h2>
             <ScrollableList>
               {filteredMovies
                 .filter((movie) => movie.genre_ids.includes(category))

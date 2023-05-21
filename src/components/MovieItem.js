@@ -5,6 +5,7 @@ const MovieItem = ({ movie }) => {
   return (
     <Link to={`/movies/${movie.id}`}>
       <img
+        style={{width: '150px'}}
         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
         alt={movie.title}
       />
