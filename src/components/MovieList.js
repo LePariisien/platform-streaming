@@ -13,12 +13,29 @@ const MovieList = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f'
+        const page1 = await axios.get(
+          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=1'
         );
-        setMovies(response.data.results);
-        setFilteredMovies(response.data.results);
-        setCategories(getCategories(response.data.results));
+        const page2 = await axios.get(
+          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=2'
+        );
+        const page3 = await axios.get(
+          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=3'
+        );
+        const page4 = await axios.get(
+          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=4'
+        );
+    
+        const movies = [
+          ...page1.data.results,
+          ...page2.data.results,
+          ...page3.data.results,
+          ...page4.data.results,
+        ];
+
+        setMovies(movies);
+        setFilteredMovies(movies);
+        setCategories(getCategories(movies));
       } catch (error) {
         console.log(error);
       }
