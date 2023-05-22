@@ -12,48 +12,40 @@ const MovieList = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      try {
-        const page1 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=1'
-        );
-        const page2 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=2'
-        );
-        const page3 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=3'
-        );
-        const page4 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=4'
-        );
-    
-        const movies = [
-          ...page1.data.results,
-          ...page2.data.results,
-          ...page3.data.results,
-          ...page4.data.results,
-        ];
+      const page1 = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=1&language=fr-FR`
+      );
+      const page2 = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=2&language=fr-FR`
+      );
+      const page3 = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=3&language=fr-FR`
+      );
+      const page4 = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=4&language=fr-FR`
+      );
+  
+      const movies = [
+        ...page1.data.results,
+        ...page2.data.results,
+        ...page3.data.results,
+        ...page4.data.results,
+      ];
 
-        setMovies(movies);
-        setFilteredMovies(movies);
-        setCategories(getCategories(movies));
-      } catch (error) {
-        console.log(error);
-      }
+      setMovies(movies);
+      setFilteredMovies(movies);
+      setCategories(getCategories(movies));
     };
 
     const fetchGenres = async () => {
-      try {
-        const response = await axios.get(
-          'https://api.themoviedb.org/3/genre/movie/list?api_key=22ac58ffbc1eadc600f5e2024e583e3f&language=fr-FR'
-        );
-        const genreMap = response.data.genres.reduce((map, genre) => {
-          map[genre.id] = genre.name;
-          return map;
-        }, {});
-        setGenreMap(genreMap);
-      } catch (error) {
-        console.log(error);
-      }
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
+      );
+      const genreMap = response.data.genres.reduce((map, genre) => {
+        map[genre.id] = genre.name;
+        return map;
+      }, {});
+      setGenreMap(genreMap);
     };
 
     fetchMovies();
@@ -84,7 +76,9 @@ const MovieList = () => {
       const filtered = movies.filter((movie) =>
         movie.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setFilteredMovies(filtered);
+      setFilteredMovies(movies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
     } else {
       setFilteredMovies(movies);
     }
@@ -99,11 +93,11 @@ const MovieList = () => {
         placeholder="Rechercher un film..."
       />
       {searchTerm ? (
-        <ScrollableList>
+        <div style={{display:'inline-block', width:'auto', margin:'15px 0px 0px 15px'}}>
           {filteredMovies.map((movie) => (
             <MovieItem key={movie.id} movie={movie} />
           ))}
-        </ScrollableList>
+        </div>
       ) : (
         categories.map((category) => (
           <div key={category}>

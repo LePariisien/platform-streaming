@@ -8,15 +8,13 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
-        );
-        setMovie(response.data);
-        console.log(movie.production_companies["0"].name)
-      } catch (error) {
-        console.log(error);
-      }
+      console.log('test 2')
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
+      );
+      console.log('test 3')
+      setMovie(response.data);
+      console.log(movie)
     };
 
     fetchMovieDetails();
