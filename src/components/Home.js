@@ -4,7 +4,7 @@ import MovieList from './MovieList.js';
 const Home = () => {
   return (
     <div>
-      <h1>Liste des films</h1>
+      <h1 style={{backgroundColor: 'orange', color: 'black', textAlign:'center'}}>StreamLag</h1>
       <MovieList />
     </div>
   );

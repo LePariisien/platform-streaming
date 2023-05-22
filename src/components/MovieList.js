@@ -14,16 +14,16 @@ const MovieList = () => {
     const fetchMovies = async () => {
       try {
         const page1 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=1'
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=1`
         );
         const page2 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=2'
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}f&page=2`
         );
         const page3 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=3'
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}f&page=3`
         );
         const page4 = await axios.get(
-          'https://api.themoviedb.org/3/movie/popular?api_key=22ac58ffbc1eadc600f5e2024e583e3f&page=4'
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=4`
         );
     
         const movies = [
@@ -44,7 +44,7 @@ const MovieList = () => {
     const fetchGenres = async () => {
       try {
         const response = await axios.get(
-          'https://api.themoviedb.org/3/genre/movie/list?api_key=22ac58ffbc1eadc600f5e2024e583e3f&language=fr-FR'
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
         );
         const genreMap = response.data.genres.reduce((map, genre) => {
           map[genre.id] = genre.name;
