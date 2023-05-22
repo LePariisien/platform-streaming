@@ -17,20 +17,28 @@ const MovieList = () => {
           `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=1`
         );
         const page2 = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}f&page=2`
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=2`
         );
         const page3 = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}f&page=3`
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=3`
         );
         const page4 = await axios.get(
           `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=4`
         );
-    
+        const page5 = await axios.get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=5`
+        );
+        // const page6 = await axios.get(
+        //   `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=6`
+        // );
+        console.log(process.env.REACT_APP_API_KEY)
         const movies = [
           ...page1.data.results,
           ...page2.data.results,
           ...page3.data.results,
           ...page4.data.results,
+          ...page5.data.results,
+          // ...page6.data.results,
         ];
 
         setMovies(movies);
@@ -93,6 +101,7 @@ const MovieList = () => {
   return (
     <div>
       <input
+        style={{borderRadius:'5px', backgroundColor: 'orange', borderColor: 'black'}}
         type="text"
         value={searchTerm}
         onChange={handleSearch}

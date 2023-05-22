@@ -10,7 +10,7 @@ const MovieDetails = () => {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
         );
         setMovie(response.data);
         console.log(movie.production_companies["0"].name)
@@ -28,7 +28,8 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <h1 style={{textAlign: 'center'}}>{movie.title}</h1>
+      <img style={{ width: '200px', marginLeft: '450px', marginTop: '10px'}} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt=''/>
+      <h1 style={{textAlign: 'center', fontSize: 'xx-large'}}>{movie.title}</h1>
       <p style={{marginTop: '10px'}}>Description du film : <br />{movie.overview}</p>
       <p>Date de sortie : {movie.release_date}</p>
       <p>Note du public : {movie.vote_average}</p>
