@@ -2,26 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const MovieDetails = () => {
+function MovieDetails () {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
 
-  useEffect(() => {
-    const fetchMovieDetails = async () => {
-      console.log('test 2')
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
-      );
-      console.log('test 3')
-      setMovie(response.data);
-      console.log(movie)
-    };
+  async function fetchMovieDetails () {
+    console.log('test 2')
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
+    );
+    console.log('test 3')
+    setMovie(response.data);
+    console.log(movie)
+  };
 
+  useEffect(() => {
     fetchMovieDetails();
   }, [id]);
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div>Chargement...</div>;
   }
 
   return (

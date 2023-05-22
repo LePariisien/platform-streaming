@@ -1,8 +1,8 @@
 import React from 'react';
 import '../App.css';
 
-const ScrollableList = ({ children }) => {
+function ScrollList ({ children }) {
   return <div className="scrollable-list">{children}</div>;
 };
 
-export default ScrollableList;
+export default ScrollList;

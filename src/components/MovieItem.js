@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MovieItem = ({ movie }) => {
-
-
-
+function MovieItem ({ movie }) {
   return (
     <Link to={`/movies/${movie.id}`}>
       <div style={{display:'inline-block', padding:'15px'}}>

@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieList from './MovieList.js';
+import MovieList from '../components/MovieList.js';
 
-const Home = () => {
+function Home () {
   return (
     <div>
       <h1 style={{backgroundColor: 'orange', color: 'black', textAlign:'center'}}>StreamLag</h1>
