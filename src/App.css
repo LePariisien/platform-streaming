@@ -1,68 +1,30 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 .scrollable-list {
   display: flex;
   overflow-x: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.scrollable-list::-webkit-scrollbar {
+  display: none;
 }
 
 .scrollable-list img {
   margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* styles.css */
-
-/* Couleurs principales */
 :root {
   --color-primary: orange;
   --color-secondary: black;
-  --color-text: white; /* Ajout de la couleur du texte */
+  --color-text: white; 
 }
 
-/* Styles généraux */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--color-secondary);
-  color: var(--color-text); /* Utilisation de la couleur du texte */
+  color: var(--color-text); 
 }
 
 .container {
@@ -75,7 +37,6 @@ h1, h2 {
   color: var(--color-primary);
 }
 
-/* Barre de recherche */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -100,7 +61,6 @@ h1, h2 {
   cursor: pointer;
 }
 
-/* Liste de films */
 .movie-list {
   display: flex;
   flex-wrap: wrap;
@@ -127,7 +87,6 @@ h1, h2 {
   font-size: 16px;
 }
 
-/* Styles spécifiques à l'apparence de streaming */
 .movie-list {
   padding: 20px 0;
 }
@@ -142,4 +101,58 @@ h1, h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajoutez d'autres styles CSS selon vos besoins */
+.movie {
+  background-color: #000;
+  color: #fff;
+}
+
+.header {
+  background-color: #f90;
+  padding: 10px;
+  text-align: center;
+}
+
+.logo {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  padding: 20px;
+}
+
+.poster {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.poster-image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.details {
+  flex: 2;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.overview {
+  margin-bottom: 10px;
+}
+
+.production-companies {
+  list-style: none;
+  padding-left: 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+}

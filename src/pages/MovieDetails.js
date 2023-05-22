@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Home from './Home';
 import axios from 'axios';
 
 function MovieDetails () {
@@ -25,19 +26,32 @@ function MovieDetails () {
   }
 
   return (
-    <div>
-      <h1 style={{textAlign: 'center'}}>{movie.title}</h1>
-      <p style={{marginTop: '10px'}}>Description du film : <br />{movie.overview}</p>
-      <p>Date de sortie : {movie.release_date}</p>
-      <p>Note du public : {movie.vote_average}</p>
-      <p>Durée : {movie.runtime} min</p>
-      <p>Langue d'origine : {movie.original_language}</p>
-      <p>Les compagnies qui ont aidé à la production : <ul>
-        {movie.production_companies.map(company => (
-          <li key={company.id}>{company.name}</li>
-        ))}
-      </ul></p>
-    </div>
+    <>
+      <div className="movie">
+      <Home />
+        <div className="content">
+          <div className="poster">
+            <img className="poster-image" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt='' />
+          </div>
+            <div className="details">
+              <h1 className="title">{movie.title}</h1><br /><br />
+              <div style={{paddingLeft:'20px'}}>
+                <p className="overview"><h3>Description du film : </h3>{movie.overview}</p>
+                <p className="release-date"><h3>Date de sortie : </h3>{movie.release_date}</p>
+                <p className="vote-average"><h3>Note du public : </h3>{movie.vote_average}</p>
+                <p className="runtime"><h3>Durée : </h3>{movie.runtime} min</p>
+                <p className="original-language"><h3>Langue d'origine : </h3>{movie.original_language}</p>
+                <p><h3>Les compagnies qui ont aidé à la production :</h3></p>
+                <ul className="production-companies">
+                  {movie.production_companies.map(company => (
+                    <li key={company.id}>{company.name}</li>
+                  ))}
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

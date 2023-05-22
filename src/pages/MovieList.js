@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import MovieItem from './MovieItem';
-import ScrollList from './ScrollList';
+import MovieItem from '../components/MovieItem';
+import Home from './Home';
+import ScrollList from '../components/ScrollList';
 
 function MovieList () {
   const [movies, setMovies] = useState([]);
@@ -27,9 +28,9 @@ function MovieList () {
     const page5 = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=5&language=fr-FR`
     );
-    // const page6 = await axios.get(
-    //   `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=6&language=fr-FR`
-    // );
+    const page6 = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=7&language=fr-FR`
+    );
 
     const movies = [
       ...page1.data.results,
@@ -37,7 +38,7 @@ function MovieList () {
       ...page3.data.results,
       ...page4.data.results,
       ...page5.data.results,
-      // ...page6.data.results,
+      ...page6.data.results,
     ];
 
     setMovies(movies);
@@ -91,14 +92,18 @@ function MovieList () {
   }, [searchTerm]);
   
   return (
+    <>
+    <Home />
     <div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
       <input
-        style={{borderRadius:'5px', backgroundColor: 'orange', borderColor: 'black'}}
+        style={{borderRadius:'5px', backgroundColor: 'orange', borderColor: 'black', width: '500px', height:'20px'}}
         type="text"
         value={searchTerm}
         onChange={handleSearch}
         placeholder="Rechercher un film..."
       />
+      </div>
       {searchTerm ? (
         <div style={{display:'inline-block', width:'auto', margin:'15px 0px 0px 15px'}}>
           {filteredMovies.map((movie) => (
@@ -120,6 +125,7 @@ function MovieList () {
         ))
       )}
     </div>
+    </>
   );
 };
 

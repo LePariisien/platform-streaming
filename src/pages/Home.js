@@ -1,13 +1,14 @@
 import React from 'react';
-import MovieList from '../components/MovieList.js';
+import { Link } from 'react-router-dom';
+import Logo from '../img/Logo.png';
 
-function Home () {
+export default function Home () {
   return (
-    <div>
-      <h1 style={{backgroundColor: 'orange', color: 'black', textAlign:'center', fontFamily:'Maven bold'}}>StreamLag</h1>
-      <MovieList />
-    </div>
+      <Link to="/" className="logo">
+        <div style={{display:'flex', justifyContent:'center'}}>
+          <img src={Logo} style={{height:'100px'}} />
+          <h1 style={{backgroundColor: 'black', color: 'orange', textAlign:'center', fontFamily:'Maven bold',}}>StreamLag</h1>
+        </div>
+      </Link>
   );
-};
-
-export default Home;
+}
